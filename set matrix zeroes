@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+    public static void setZeros(int matrix[][]) {
+        // Write your code here..
+        ArrayList<Integer>row=new ArrayList<>();
+        ArrayList<Integer>col=new ArrayList<>();
+        int[]arr1=new int[matrix.length];
+        int[]arr2=new int[matrix[0].length];
+        for(int i=0;i<matrix.length;i++)
+        {
+            arr1[i]=0;
+            for(int j=0;j<matrix[0].length;j++)
+            {
+                arr2[j]=0;
+                if(matrix[i][j]==0)
+                {
+                    row.add(i);
+                    col.add(j);
+                }
+            }
+        }
+        for(int i=0;i<row.size();i++)
+        {
+            if(arr2[col.get(i)]==0)
+            {
+                for(int j=0;j<matrix.length;j++)
+                {
+                matrix[j][col.get(i)]=0;
+                }
+                arr2[col.get(i)]=1;
+            }
+           if(arr1[row.get(i)]==0)
+           {
+            for(int k=0;k<matrix[0].length;k++)
+            {
+                    matrix[row.get(i)][k]=0;
+            }
+            arr1[row.get(i)]=1;
+           }
+            
+        }
+    }
+
+}
