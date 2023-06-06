@@ -1,0 +1,53 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+
+// import org.graalvm.compiler.hotspot.replacements.LoadExceptionObjectSnippets.Templates;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> arr) 
+	{
+		// Write your code here.
+		ArrayList<Integer>ans=new ArrayList<>();
+		//step1
+		int si=-1;
+		int bi=-1;
+		int n=arr.size();
+		for(int i=n-1;i>=1;i--)
+		{
+			if(arr.get(i)>arr.get(i-1))
+			{
+				si=i-1;
+				break;
+			}
+		}
+		if(si==-1)
+		{
+			for(int i=n-1;i>=0;i--) ans.add(arr.get(i));
+			return ans;
+		}
+		//step 2
+		for(int i=n-1;i>si;i--)
+		{
+			if(arr.get(i)>arr.get(si)) 
+			{
+				bi=i;
+				break;
+			} 
+		}
+		Integer temp=arr.get(si);
+		arr.set(si,arr.get(bi));	
+		arr.set(bi,temp);
+		for(int i=0;i<=si;i++) ans.add(arr.get(i));
+		int i=si;
+		int j=n-1;
+		while(j>i)
+		{
+			ans.add(arr.get(j));
+			j--;
+		}
+		return ans;
+	}
+}
