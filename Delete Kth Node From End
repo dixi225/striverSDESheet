@@ -31,6 +31,7 @@
 
  *****************************************************************/
 
+
 public class Solution
 {
     public static Node removeKthNode(Node head, int k)
@@ -62,3 +63,4 @@ public class Solution
         return head;
     }
 }
+
