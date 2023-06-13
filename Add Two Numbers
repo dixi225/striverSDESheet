@@ -1,0 +1,74 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+         public static ListNode helper(ListNode head) 
+    {
+        // Write your code here!
+		// LinkedListNode<Integer>ans=new LinkedListNode<>();
+		ListNode ptr=head;
+		ListNode next=null;
+		ListNode prev=null;
+		while(ptr!=null)
+		{
+			next=ptr.next;
+			ptr.next=prev;
+			prev=ptr;
+			ptr=next;
+		}
+		return prev;
+    }
+    public ListNode addTwoNumbers(ListNode head1, ListNode head2) {
+
+        ListNode dummyhead=new ListNode(0);
+        ListNode temp=dummyhead;
+        int c=0;
+        while(head1!=null&&head2!=null)
+        {
+        ListNode tnode=new ListNode(0);
+        temp.next=tnode;
+        temp=temp.next;
+        int sum=head1.val+head2.val+c;
+        temp.val=sum%10;
+        c=sum/10;
+        head1=head1.next;
+        head2=head2.next;
+        }
+        while(head1!=null)
+        {
+        ListNode tnode=new ListNode(0);
+        temp.next=tnode;
+        temp=temp.next;
+        int sum=head1.val+c;
+        temp.val=sum%10;
+        c=sum/10;
+        head1=head1.next;
+        }
+        while(head2!=null)
+        {
+        ListNode tnode=new ListNode(0);
+        temp.next=tnode;
+        temp=temp.next;
+        int sum=head2.val+c;
+        temp.val=sum%10;
+        c=sum/10;
+        head2=head2.next;
+        }
+        if(c!=0)
+        {
+        ListNode tnode=new ListNode(0);
+        temp.next=tnode;
+        temp=temp.next;
+        temp.val=c;
+        }
+        dummyhead=dummyhead.next;
+        return dummyhead;
+    }
+}
